@@ -1,0 +1,11 @@
+<div class="AknFormContainer AknFormContainer--withPadding">
+    <div class="AknFieldContainer system-locale-field">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label" for="additional-feature"><%- _.__('oro_config.form.config.group.additional.features') %></label>
+        </div>
+        <div class="AknFieldContainer-inputContainer">
+            <% console.log(modelData) %>
+            <input type="number" name="sku-start-number" id="pim_enrich_form_sku-start-number" class="AknTextField" value="<%- modelData['Bolgatty_additional_featuers___features'].value %>" minlength="5"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+parameters:
+    bolgatty.manager.entity_with_values_draft.class: Bolgatty\WorkFlowBundle\Manager\EntityWithValuesDraftManager
+
+services:
+    bolgatty.manager.product_draft:
+        class: '%bolgatty.manager.entity_with_values_draft.class%'
+        arguments:
+            - '@bolgatty.saver.working_copy_product'
+            - '@pim_user.context.user'
+            - '@bolgatty.factory.product_draft'
+            - '@bolgatty.repository.product_draft'
+            - '@bolgatty_workflow.applier.draft'
+            - '@event_dispatcher'
+            - '@bolgatty.saver.product_draft'
+            - '@bolgatty.remover.product_draft'
+            - '@pim_enrich.filter.product_values_edit_data'
+            - '@Bolgatty\WorkFlowBundle\Component\Factory\PimUserDraftSourceFactory'
+
+    bolgatty.manager.product_model_draft:
+        class: '%bolgatty.manager.entity_with_values_draft.class%'
+        arguments:
+            - '@bolgatty.saver.working_copy_product_model'
+            - '@pim_user.context.user'
+            - '@bolgatty.factory.product_model_draft'
+            - '@bolgatty.repository.product_draft'
+            - '@bolgatty_workflow.applier.draft'
+            - '@event_dispatcher'
+            - '@bolgatty.saver.product_model_draft'
+            - '@bolgatty.remover.product_model_draft'
+            - '@pim_enrich.filter.product_values_edit_data'
+            - '@Bolgatty\WorkFlowBundle\Component\Factory\PimUserDraftSourceFactory'

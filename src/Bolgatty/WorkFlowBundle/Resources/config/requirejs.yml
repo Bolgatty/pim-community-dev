@@ -1,0 +1,31 @@
+config:
+    paths:
+        # # Conterollers
+      
+        # Forms
+        workflow/product/save: workflow/js/product/save
+        workflow/product/delete: workflow/js/product/delete
+        workflow/product/form/send-for-approval: workflow/js/product/form/send-for-approval
+        # workflow/product/form/send-for-approval-comment: workflow/js/product/form/send-for-approval-comment
+        workflow/product/form/proposal-add-comment: workflow/js/product/form/proposal-add-comment
+        workflow/product/form/meta/draft-status: workflow/js/product/form/meta/draft-status
+        workflow/product/form/proposals: workflow/js/product/form/proposals
+        workflow/product/form/abstract-add-notification-comment: workflow/js/product/form/abstract-add-notification-comment
+        workflow/product/form/working-copy: workflow/js/product/form/working-copy
+        workflow/proposal/partial-proposal-builder: workflow/js/datagrid/partial-proposal-builder
+        
+        # actions
+        oro/datagrid/approve-proposal-action: workflow/js/datagrid/action/approve-proposal-action
+        oro/datagrid/refuse-proposal-action: workflow/js/datagrid/action/refuse-proposal-action
+        oro/datagrid/remove-proposal-action: workflow/js/datagrid/action/remove-proposal-action
+        # templates 
+        workflow/template/product/submit-draft: workflow/templates/product/submit-draft.html
+        workflow/template/product/submit-draft-sequential-edit: workflow/templates/product/submit-draft-sequential-edit.html
+        workflow/template/product/meta/notification-comment: workflow/templates/product/meta/comment.html
+        workflow/template/product/meta/draft-status: workflow/templates/product/meta/draft-status.html
+        workflow/template/product/tab/proposals: workflow/templates/product/tab/proposals.html
+        workflow/template/product/send-for-approval: workflow/templates/product/send-for-approval.html
+        workflow/template/product/tab/attribute/modified-by-draft: workflow/templates/product/tab/attributes/modified-by-draft.html
+
+        
+    config:

@@ -1,0 +1,10 @@
+
+# extensions:
+#     bolgatty-ldap-configuration:
+#         module: pim/menu/item
+#         parent: pim-menu-system-navigation-block
+#         aclResourceId: oro_config_system
+#         position: 150
+#         config:
+#             title: bolgatty.ldap_menu.configuration
+#             to: oro_config_configuration_system

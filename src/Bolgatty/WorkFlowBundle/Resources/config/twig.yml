@@ -1,0 +1,40 @@
+services:
+    ##
+    # Twig Extension
+    ##
+    bolgatty.twig.extension.product_draft_status_grid:
+        class: Bolgatty\WorkFlowBundle\Twig\ProductDraftStatusGridExtension
+        tags:
+            - { name: twig.extension }
+
+    bolgatty.twig.attribute_extension:
+        class: Bolgatty\WorkFlowBundle\Twig\AttributeExtension
+        arguments:
+            - '@pim_catalog.repository.cached_attribute'
+        tags:
+            - { name: twig.extension }
+    
+    bolgatty.twig.extension.product_draft_changes:
+        class: Bolgatty\WorkFlowBundle\Twig\ProductDraftChangesExtension
+        public: true
+        arguments:
+            - '@pim_catalog.repository.cached_attribute'
+            - '@bolgatty.product_draft_renderer'
+            - '@translator'
+            - '@akeneo.pim.enrichment.factory.value'
+        tags:
+            - { name: twig.extension }
+
+    bolgatty.product_draft_renderer:
+        class: Bolgatty\WorkFlowBundle\Rendering\PhpDiffRenderer
+        arguments:
+            - '@bolgatty.renderer.html.simple_list'
+            - '@bolgatty.rendering.diff_factory'
+
+    bolgatty.renderer.html.simple_list:
+        public: false
+        class: Bolgatty\WorkFlowBundle\Rendering\SimpleList
+
+    bolgatty.rendering.diff_factory:
+        public: false
+        class: Bolgatty\WorkFlowBundle\Rendering\DiffFactory

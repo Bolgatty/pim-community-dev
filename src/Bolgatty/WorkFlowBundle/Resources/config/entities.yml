@@ -1,0 +1,3 @@
+parameters:
+    bolgatty.entity.product_draft.class: Bolgatty\WorkFlowBundle\Entity\ProductDraft
+    bolgatty.model.product_model_draft.class: Bolgatty\WorkFlowBundle\Entity\ProductModelDraft

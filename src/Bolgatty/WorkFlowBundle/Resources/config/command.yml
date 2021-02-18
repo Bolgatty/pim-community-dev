@@ -1,0 +1,4 @@
+# services:
+#     Bolgatty\WorkFlowBundle\Command\SkuGeneratorInstallationCommand:
+#         tags:
+#             - { name: console.command }

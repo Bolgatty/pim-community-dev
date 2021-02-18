@@ -1,0 +1,48 @@
+parameters:
+    bolgatty.builder.draft.class: Bolgatty\WorkFlowBundle\Builder\EntityWithValuesDraftBuilder
+    bolgatty.applier.draft.class: Bolgatty\WorkFlowBundle\Component\Applier\DraftApplier
+    # pim_user.updater.user.class: Bolgatty\WorkFlowBundle\Component\Updater\UserUpdater
+services:
+    bolgatty.product.builder.draft:
+        class: '%bolgatty.builder.draft.class%'
+        arguments:
+            - '@pim_standard_format_serializer'
+            - '@pim_catalog.comparator.registry'
+            - '@akeneo.pim.structure.query.get_attributes'
+            - '@bolgatty.factory.product_draft'
+            - '@bolgatty.repository.product_draft'
+            - '@akeneo.pim.enrichment.factory.write_value_collection'
+            - '@akeneo.pim.enrichment.factory.value'
+
+    bolgatty.product_model.builder.draft:
+        class: '%bolgatty.builder.draft.class%'
+        arguments:
+            - '@pim_standard_format_serializer'
+            - '@pim_catalog.comparator.registry'
+            - '@akeneo.pim.structure.query.get_attributes'
+            - '@bolgatty.factory.product_model_draft'
+            - '@bolgatty.repository.product_model_draft'
+            - '@akeneo.pim.enrichment.factory.write_value_collection'
+            - '@akeneo.pim.enrichment.factory.value'
+
+    bolgatty_workflow.applier.draft:
+        class: '%bolgatty.applier.draft.class%'
+        arguments:
+            - '@pim_catalog.updater.property_setter'
+            - '@event_dispatcher'
+            - '@pim_catalog.repository.attribute'
+
+    bolgatty_workflow.authorization_checker:
+        class: Bolgatty\WorkFlowBundle\Component\Authorization\AuthorizationChecker
+        decorates: security.authorization_checker
+        decoration_inner_name: bolgatty.base_authorization_checker
+        arguments:
+            - '@bolgatty.base_authorization_checker'
+            - '@security.token_storage'
+            # - '@pimee_authorization_serializer'
+
+    bolgatty_workflow.permission_checker:
+        class: Bolgatty\WorkFlowBundle\Component\Authorization\PermissionChecker      
+        arguments:
+            - '@oro_security.acl.manager'
+            - '%pim_user.privileges%'

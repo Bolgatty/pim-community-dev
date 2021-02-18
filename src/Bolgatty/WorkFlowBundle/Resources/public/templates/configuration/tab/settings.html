@@ -1,0 +1,104 @@
+<div class="AknFormContainer AknFormContainer--withPadding AknFormContainer-Settings">
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_">
+                <%- skuGeneratorForm.label %>
+            </label>
+        </div>    
+        <div class="AknFieldContainer-inputContainer AknFormContainer-Mappings">
+            <div class="field-input" style="width: 100%">
+                <% var value = selectVal = model && typeof(model) !== 'undefined' && typeof(model[skuGeneratorForm.name]) !== 'undefined' ?  model[skuGeneratorForm.name] : '' %>
+                <input class="AknTextField sku_generator_sequence_class" id="pim_enrich_form_number_selection" type="number" 
+                name="<%- skuGeneratorForm.name %>" value="<%- value %>"/>
+            </div>
+        </div> 
+        <div class="AknFieldContainer-footer">
+            <div class="AknFieldContainer-validationErrors validation-errors">
+                <% if(error && typeof error[skuGeneratorForm.name] !== 'undefined') { %>
+                    <div class="AknFieldContainer-validationError">
+                        <!-- <i class="icon-warning-sign"></i> -->
+                        <%- error[skuGeneratorForm.name] %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+   
+    </div>
+    <hr>
+    <h2>Auto Generator Options</h2>
+    <% _.each(optionsForm, function(optionForm) { %> 
+        <div class="AknFieldContainer">
+            <div class="AknFieldContainer-header">
+                    <label class="AknFieldContainer-label control-label" for="pim_enrich_form_">
+                            <%- optionForm.label %>
+                    </label>
+            </div>
+            <% if(!_.isUndefined(optionForm.type)) { %>
+                <% var fieldValue = selectVal = model && typeof(model) !== 'undefined' && typeof(model[optionForm.name]) !== 'undefined' ?  model[optionForm.name] : '' %>
+                <% if('input' === optionForm.type) { %> 
+                    <div class="AknFieldContainer-inputContainer AknFormContainer-Mappings">
+                        <div class="field-input" style="width: 100%">
+                            <input class="AknTextField" id="pim_enrich_form_<%- optionForm.name %>" 
+                            type="text" name="<%- optionForm.name %>" value="<%- fieldValue %>" />
+                        </div>
+                    </div> 
+                <% } else if( 'select' === optionForm.type  && "autogenerateSkuOptions" == optionForm.name) { %> 
+                    <select name="<%- optionForm.name %>" id="pim_enrich_entity_form_<%- optionForm.name %>"
+                         class="select2 label-field AknSettingField attributeValue" multiple>
+                        <% _.each(attributes, function(attribute) { %>
+                            <% if(_.contains(['pim_catalog_text','pim_catalog_number', 'pim_catalog_simpleselect'], attribute.type)) { %>
+                                <option value="<%- attribute.code %>" <% if( _.contains(fieldValue, attribute.code)) { %>
+                                    selected="selected"<% } %> >
+                                    <%- 'undefined' !== typeof(attribute.labels[currentLocale]) ? attribute.labels[currentLocale] : attribute.code  %>
+                                </option>
+                            <% } %>
+                        <% }) %>
+                    </select>
+                <% } if( 'select' === optionForm.type  && "skuSeparator" == optionForm.name) { %>
+                    <select name="<%- optionForm.name %>" id="pim_enrich_entity_form_<%- optionForm.name %>"
+                        class="select2 label-field AknSettingField attributeValue">
+                        <% var selected = (!_.isUndefined(model) && !_.isUndefined(model[optionForm.name])) ? model[optionForm.name] : '' %>
+                        <% _.each(optionForm.options, function(option) { %>
+                               <option value="<%- option.code %>" 
+                                   <% if(selected == option.code) { %> selected="selected" <% } %> >
+                                   <%- option.label  %>
+                               </option>
+                       <% }) %>
+                   </select>
+                <% }%>
+                <div class="AknFieldContainer-footer">
+                    <div class="AknFieldContainer-validationErrors validation-errors">
+                        <% if(error && typeof error[optionForm.name] !== 'undefined') { %>
+                            <div class="AknFieldContainer-validationError">
+                                <!-- <i class="icon-warning-sign"></i> -->
+                                <%- error[optionForm.name] %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>      
+        </div>
+    <% }) %>
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+                <label class="AknFieldContainer-label control-label" for="pim_enrich_form_">
+                       Select Default Locale
+                </label>
+        </div>
+        <select name="akeneo_locale" id="pim_enrich_entity_form_"
+                class="select2 label-field AknSettingField attributeValue">
+            <% _.each(locales, function(locale) { %>
+                    <% var selectVal = model && typeof(model) !== 'undefined' && typeof(model['akeneo_locale']) !== 'undefined' ?  model['akeneo_locale'] : '' %>
+
+                    <option value="<%- locale.code %>" <% if(locale.code === selectVal) { %> selected='selected' <% } %> >
+                        <%- locale.code %>
+                    </option>
+            <% }) %>
+        </select>     
+    </div>
+</div>
+
+<div class="AknFooter-item current-version" style="text-align: center; display: block;">
+    <span>Module Version:</span>
+    <span> <%- moduleVersion %> </span>
+</div>

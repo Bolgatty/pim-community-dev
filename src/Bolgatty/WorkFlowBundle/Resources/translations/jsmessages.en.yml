@@ -1,0 +1,98 @@
+# bolgatty_workflow.proposal.modal.title
+# bolgatty.entity.product_draft.module.proposal.reject
+bolgatty:
+    user:
+        config: User Config
+        properties:
+            is_owner: Is Owner
+            ui_locale: User UI Locales
+    approval.send: Send for approval
+    proposal.confirm: Send
+    product_draft:
+        proposal:
+            comment_chars: chars
+            comment_title: Comment your proposal (optional - 255 characters max.)
+
+pim_menu:
+    item:
+        proposal: Proposals
+        
+# pimee_dashboard:
+#     widget:
+#         product_drafts:
+#             date:    Date
+#             author:  Author
+#             product: Product
+#             review:  Review
+#             empty:   No proposals to review
+#         header.view_all: View all
+pim_notification.types.bolgatty_workflow_product_draft_notification_approve: Proposal approved
+pim_notification.types.bolgatty_workflow_product_draft_notification_refuse: Proposal rejected
+
+bolgatty_workflow.entity.product:
+    proposal.modal.title: Leave a comment (optional - 255 characters max.)
+    module:
+        history:
+            published: Published
+            revert: Restore
+        attribute:
+            can_be_updated_by_a_rule: "This attribute can be updated by a rule: {{ rule }}"
+            value_updated: This value is updated by the current draft
+        meta:
+            published_version: Published version
+            owner_groups: Owner groups
+            draft_status: Draft status
+            draft:
+                in_progress: In progress
+                sent_for_approval: Waiting for approval
+                working_copy: Working copy
+        revert:
+            title: Restore confirmation
+            content: Are you sure you want to restore the product to this version?
+        publish:
+            title: Publish this product
+            content: Are you sure you want to publish this product?
+        unpublish:
+            title: Unpublish this product
+            content: Are you sure you want to unpublish this product?
+        copy:
+            working_copy: Working copy
+            draft: My draft
+            draft_of: "{{ author }}'s draft"
+        approval:
+            send: Send for approval
+            sent: Sent for approval
+            send_and_next: Send and next
+            send_and_finish: Send and finish
+     
+bolgatty_workflow.entity.product_draft:
+    flash:
+        approve:
+            success: The proposal has been applied successfully.
+            fail: "The proposal can't be applied due to the following error: {{ error }}"
+        reject:
+            success: The proposal has been rejected.
+        remove:
+            success: The proposal has been removed.
+        update:
+            success: Product draft has been successfully saved
+            fail: Product draft could not be updated
+        create:
+            success: Product draft sent for approval
+            fail: You cannot send this draft for approval
+            skip: Product draft hasn't been sent for approval as no value has been edited
+    module:
+        proposal:
+            accept: Accept proposal
+            accept_selected: Accept selected proposal(s)
+            reject: Reject proposal
+            reject_selected: Reject selected proposal(s)
+            remove: Remove proposal
+            comment_title: Comment your proposal (optional - 255 characters max.)
+            comment_chars: chars.
+            confirm: Send
+        edit:
+            discard_changes: Unsaved changes will be lost. Are you sure you want to send your draft for approval without unsaved changes?
+            discard_changes_title: Are you sure you want to send this draft?
+
+

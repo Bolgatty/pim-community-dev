@@ -1,0 +1,76 @@
+extensions:
+    # pim-product-model-edit-form-read-only-locale:
+    #     module: pimee/product-edit-form/attributes/read-only-locale
+    #     parent: pim-product-model-edit-form-attributes
+    #     targetZone: self
+    #     position: 100
+
+    # pim-product-model-edit-form-read-only-attribute-group:
+    #     module: pimee/product-edit-form/attributes/read-only-attribute-group
+    #     parent: pim-product-model-edit-form-attributes
+    #     targetZone: self
+    #     position: 100
+
+    # pim-product-model-edit-form-read-only-attribute:
+    #     module: pimee/product-edit-form/attributes/read-only-attribute
+    #     parent: pim-product-model-edit-form-attributes
+    #     position: 100
+
+    # pim-product-model-edit-form-smart-attribute:
+    #     module: pimee/product-edit-form/attributes/smart-attribute
+    #     parent: pim-product-model-edit-form-attributes
+    #     targetZone: self
+    #     position: 110
+
+    # pim-product-model-edit-form-send-for-approval:
+    #     module: workflow/product/form/send-for-approval
+    #     parent: pim-product-model-edit-form
+    #     targetZone: buttons
+    #     position: 85
+    #     config:
+    #         idKeyName: productModelId
+    #         routes:
+    #             ready: pimee_workflow_product_model_draft_ready
+
+    pim-product-model-edit-form-meta-draft-status:
+        module: workflow/product/form/meta/draft-status
+        parent: pim-product-model-edit-form-meta
+        targetZone: meta
+        position: 130
+
+    pim-product-model-edit-form-proposals:
+        module: workflow/product/form/proposals
+        parent: pim-product-model-edit-form-column-tabs
+        aclResourceId: bolgatty_product_or_product_model_proposals
+        targetZone: container
+        position: 115
+        config:
+            datagridName: product-model-draft-grid
+            tabCode: pim-product-or-product-model-edit-form-proposals
+
+    # pim-product-model-edit-form-copy:
+    #     module: pimee/product-edit-form/attributes/copy
+    #     config:
+    #         fetcher: product_model_draft
+
+
+    pim-product-model-edit-form-working-copy:
+        module: workflow/product/form/working-copy
+        parent: pim-product-model-edit-form
+        targetZone: self
+        position: 100
+
+    # pim-product-model-edit-form-variant-navigation:
+    #     module: pimee/product-edit-form/variant-navigation
+    #     parent: pim-product-model-edit-form
+    #     targetZone: navigation
+
+    pim-product-model-edit-send-for-approval:
+        module: workflow/product/form/send-for-approval
+        parent: pim-product-model-edit-form-secondary-actions
+        targetZone: secondary-actions
+        aclResourceId: bolgatty_product_or_product_model_send_for_approval
+        position: 150
+        config:
+            idKeyName: productModelId
+            route: bolgatty_workflow_product_model_draft_ready

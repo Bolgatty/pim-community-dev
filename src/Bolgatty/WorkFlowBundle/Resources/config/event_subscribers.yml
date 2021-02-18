@@ -1,0 +1,220 @@
+parameters:
+    # bolgatty.event_subscriber.published_product.check_removal.class:    Bolgatty\WorkFlowBundle\EventSubscriber\PublishedProduct\CheckPublishedProductOnRemovalSubscriber
+    # bolgatty.event_subscriber.published_product.detach_product.class:   Bolgatty\WorkFlowBundle\EventSubscriber\PublishedProduct\DetachProductPostPublishSubscriber
+    bolgatty.event_subscriber.product_draft.send_for_approval.class:    Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\SendForApprovalSubscriber
+    # bolgatty.event_subscriber.import.new_proposals.class:               Bolgatty\WorkFlowBundle\EventSubscriber\Import\ImportProposalsSubscriber
+    bolgatty.event_subscriber.product_draft.approve_notification.class: Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\ApproveNotificationSubscriber
+    bolgatty.event_subscriber.product_draft.refuse_notification.class:  Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\RefuseNotificationSubscriber
+    bolgatty.event_subscriber.product_draft.remove_notification.class:  Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\RemoveNotificationSubscriber
+    # bolgatty.event_subscriber.product_draft.ensure_global_status.class: Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\EnsureProductDraftGlobalStatusSubscriber
+
+    # bolgatty.subscriber.product_draft.exclude_deleted_attribute.class: Bolgatty\WorkFlowBundle\EventSubscriber\ProductDraft\ORM\ExcludeDeletedAttributeSubscriber
+    # bolgatty.event_subscriber.index_product_proposals.class: Bolgatty\WorkFlowBundle\EventSubscriber\ProductProposal\IndexProductProposalsSubscriber
+    # bolgatty.event_subscriber.index_product_model_proposals.class: Bolgatty\WorkFlowBundle\EventSubscriber\ProductModelProposal\IndexProductModelProposalsSubscriber
+
+services:
+    ##
+    # Published product events
+    ##
+    # bolgatty_versioning.event_listener.addversion:
+    #     class: 'Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\PublishedProduct\SkipVersionListener'
+    #     lazy: true
+    #     arguments:
+    #         - '@pim_versioning.manager.version'
+    #         - '@pim_versioning.serializer'
+    #         - '@pim_versioning.update_guesser.chained'
+    #         - '@pim_versioning.context.version'
+    #     tags:
+    #         - { name: doctrine.event_listener, event: onFlush, lazy: true }
+    #         - { name: doctrine.event_listener, event: postFlush, lazy: true }
+
+    # bolgatty.event_subscriber.published_product.check_removal:
+    #     class: '%bolgatty.event_subscriber.published_product.check_removal.class%'
+    #     arguments:
+    #         - '@bolgatty.repository.published_product'
+    #         - '@bolgatty.doctrine.query.published_product_query_builder_factory.without_permission'
+    #         - '@pim_catalog.repository.channel'
+    #         - '@pim_catalog.repository.locale'
+    #     tags:
+    #         - { name: kernel.event_subscriber, priority: 255 }
+
+    # bolgatty.event_subscriber.published_product.detach_product:
+    #     class: '%bolgatty.event_subscriber.published_product.detach_product.class%'
+    #     arguments:
+    #         - '@pim_catalog.object_manager.product'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    ##
+    # Import event subscribers
+    ##
+    # bolgatty.event_subscriber.import.new_proposals:
+    #     class: '%bolgatty.event_subscriber.import.new_proposals.class%'
+    #     arguments:
+    #         - '@pim_notification.notifier'
+    #         - '@pim_user.repository.user'
+    #         - '@bolgatty.provider.owner_groups'
+    #         - '@bolgatty.provider.users_to_notify'
+    #         - '@akeneo_batch.job.job_instance_repository'
+    #         - '@pim_notification.factory.notification'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    ##
+    # Product drafts event subscribers
+    ##
+    bolgatty.event_subscriber.product_draft.approve_notification:
+        class: '%bolgatty.event_subscriber.product_draft.approve_notification.class%'
+        arguments:
+            - '@pim_notification.notifier'
+            - '@pim_user.context.user'
+            - '@pim_user.repository.user'
+            - '@pim_catalog.repository.attribute'
+            - '@pim_notification.factory.notification'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    bolgatty.event_subscriber.product_draft.refuse_notification:
+        class: '%bolgatty.event_subscriber.product_draft.refuse_notification.class%'
+        arguments:
+            - '@pim_notification.notifier'
+            - '@pim_user.context.user'
+            - '@pim_user.repository.user'
+            - '@pim_catalog.repository.attribute'
+            - '@pim_notification.factory.notification'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    bolgatty.event_subscriber.product_draft.remove_notification:
+        class: '%bolgatty.event_subscriber.product_draft.remove_notification.class%'
+        arguments:
+            - '@pim_notification.notifier'
+            - '@pim_user.context.user'
+            - '@pim_user.repository.user'
+            - '@pim_catalog.repository.attribute'
+            - '@pim_notification.factory.notification'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    # bolgatty.event_subscriber.product_draft.send_for_approval:
+    #     class: '%bolgatty.event_subscriber.product_draft.send_for_approval.class%'
+    #     arguments:
+    #         - '@pim_notification.notifier'
+    #         - '@pim_user.repository.user'
+    #         - '@bolgatty.provider.owner_groups'
+    #         - '@bolgatty.provider.users_to_notify'
+    #         - '@pim_notification.factory.notification'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.event_subscriber.product_draft.ensure_global_status:
+    #     class: '%bolgatty.event_subscriber.product_draft.ensure_global_status.class%'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.product_draft.exclude_deleted_attribute:
+    #     class: '%bolgatty.subscriber.product_draft.exclude_deleted_attribute.class%'
+    #     arguments:
+    #         - '@bolgatty.sql.product.find_existing_attribute_codes'
+    #     tags:
+    #         - { name: doctrine.event_subscriber }
+
+    # bolgatty.event_subscriber.index_product_proposals:
+    #     class: '%bolgatty.event_subscriber.index_product_proposals.class%'
+    #     arguments:
+    #         - '@pim_catalog.elasticsearch.product_proposal_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.event_subscriber.index_product_model_proposals:
+    #     class: '%bolgatty.event_subscriber.index_product_model_proposals.class%'
+    #     arguments:
+    #         - '@pim_catalog.elasticsearch.product_model_proposal_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # bolgatty.subscriber.product_draft.updated_author:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\ProductDraft\UpdateDraftAuthorSubscriber
+    #     arguments:
+    #         - '@bolgatty.sql.product.update_draft_author'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.product_model_draft.updated_author:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\ProductModelDraft\UpdateDraftAuthorSubscriber
+    #     arguments:
+    #         - '@bolgatty.sql.product_model.update_draft_author'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.track_proposal:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\ProposalTracking\TrackProposalSubscriber
+    #     arguments:
+    #         - '@Akeneo\Pim\WorkOrganization\Workflow\Bundle\ProposalTracking\TrackProposal'
+    #         - '@Akeneo\Pim\WorkOrganization\Workflow\Bundle\FeatureFlag\ProposalTrackingFeature'
+    #         - '@logger'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.published_product.save.compute_published_product:
+    #     class: 'Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\PublishedProduct\OnSave\ComputePublishedProductsSubscriber'
+    #     arguments:
+    #         - '@bolgatty.query.save_published_product_completenesses'
+    #         - '@pim_catalog.completeness.calculator'
+    #         - '@pim_catalog.elasticsearch.published_product_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.published_product.delete.compute_published_product:
+    #     class: 'Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\PublishedProduct\OnDelete\ComputePublishedProductsSubscriber'
+    #     arguments:
+    #         - '@pim_catalog.elasticsearch.published_product_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # External bounded context events
+    # bolgatty.subscriber.product.remove_proposals_index:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\Product\RemoveProposalsIndexSubscriber
+    #     arguments:
+    #         - '@bolgatty.query.select_proposal_ids_from_product_ids'
+    #         - '@pim_catalog.elasticsearch.product_proposal_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.subscriber.product_model.remove_model_proposals_index:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\ProductModel\RemoveModelProposalsIndexSubscriber
+    #     arguments:
+    #         - '@bolgatty.query.select_model_proposal_ids_from_product_model_ids'
+    #         - '@bolgatty.query.select_proposal_ids_from_product_ids'
+    #         - '@pim_catalog.query.descendant_product_ids'
+    #         - '@pim_catalog.query.descendant_product_model_ids'
+    #         - '@pim_catalog.elasticsearch.product_model_proposal_indexer'
+    #         - '@pim_catalog.elasticsearch.product_proposal_indexer'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.evnt_subscriber.create_published_product_completeness_tables:
+    #     class: 'Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\PublishedProduct\CreatePublishedProductCompletenessTablesSubscriber'
+    #     arguments:
+    #         - '@database_connection'
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # bolgatty.event_subscriber.proposal_tracking.install_database:
+    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\EventSubscriber\ProposalTracking\InstallDatabaseSubscriber
+    #     arguments:
+    #         - '@database_connection'
+    #     tags:
+    #         - { name: kernel.event_subscriber }

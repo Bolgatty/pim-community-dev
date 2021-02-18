@@ -1,0 +1,72 @@
+parameters:
+    # pimee_workflow.normalizer.product_draft.class:     Akeneo\Pim\WorkOrganization\Workflow\Bundle\Normalizer\ProductDraftNormalizer
+    # pimee_workflow.normalizer.published_product.class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\Normalizer\PublishedProductNormalizer
+    bolgatty.normalizer.proposal_product.class: Bolgatty\WorkFlowBundle\Datagrid\Normalizer\ProductProposalNormalizer
+    bolgatty.normalizer.proposal_product_model.class: Bolgatty\WorkFlowBundle\Datagrid\Normalizer\ProductModelProposalNormalizer
+    # pimee_workflow.normalizer.published_product_version.class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\Versioning\VersionNormalizer
+
+services:
+    # pimee_workflow.normalizer.product_draft:
+    #     class: '%pimee_workflow.normalizer.product_draft.class%'
+    #     tags:
+    #         - { name: pim_internal_api_serializer.normalizer, priority: 120 }
+
+    # pimee_workflow.normalizer.published_product:
+    #     class: '%pimee_workflow.normalizer.published_product.class%'
+    #     arguments:
+    #         - '@pim_catalog.normalizer.standard.product.properties'
+    #         - '@pimee_workflow.normalizer.standard.published_product.associations'
+    #     tags:
+    #         - { name: pim_standard_format_serializer.normalizer, priority: 130 }
+
+    bolgatty.normalizer.proposal_product:
+        class: '%bolgatty.normalizer.proposal_product.class%'
+        arguments:
+            - '@pim_standard_format_serializer'
+            - '@pim_datagrid_serializer'
+            - '@akeneo.pim.enrichment.factory.value'
+            - '@akeneo.pim.structure.query.get_attributes'
+        tags:
+            - { name: pim_datagrid_serializer.normalizer }
+        lazy: true
+
+    bolgatty.normalizer.proposal_product_model:
+        class: '%bolgatty.normalizer.proposal_product_model.class%'
+        arguments:
+            - '@pim_standard_format_serializer'
+            - '@pim_datagrid_serializer'
+            - '@akeneo.pim.enrichment.factory.value'
+            - '@akeneo.pim.structure.query.get_attributes'
+        tags:
+            - { name: pim_datagrid_serializer.normalizer }
+        lazy: true
+
+    bolgatty_workflow.normalizer.product:
+        class: 'Bolgatty\WorkFlowBundle\Normalizer\ProductNormalizer'
+        arguments:
+            - '@pim_enrich.normalizer.product'
+            - '@bolgatty.repository.product_draft'
+            - '@bolgatty_workflow.applier.draft'
+            - '@security.token_storage'
+            - '@pim_catalog.repository.product'
+            - '@pim_catalog.completeness.missing_required_attributes_calculator'
+            - '@pim_enrich.normalizer.missing_required_attributes'
+            - '@pim_user.repository.role'
+        calls:
+            - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]
+        tags:
+            - { name: pim_internal_api_serializer.normalizer, priority: 120 }
+
+    bolgatty_workflow.normalizer.product_model:
+        class: 'Bolgatty\WorkFlowBundle\Normalizer\ProductModelNormalizer'
+        arguments:
+            - '@pim_enrich.normalizer.product_model'
+            - '@bolgatty.repository.product_model_draft'
+            - '@bolgatty_workflow.applier.draft'
+            - '@security.token_storage'
+            - '@security.authorization_checker'
+            - '@pim_catalog.repository.product_model'
+        calls:
+            - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]
+        tags:
+            - { name: pim_internal_api_serializer.normalizer, priority: 120 }

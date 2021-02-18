@@ -1,0 +1,41 @@
+extensions:
+    # User Config tab
+    pim-user-edit-form-user-config-tab:
+        module: pim/common/tab
+        parent: pim-user-edit-form-form-tabs
+        targetZone: container
+        position: 50
+        config:
+            label: bolgatty.user.config
+
+    pim-user-edit-form-user-config-tab-content:
+        module: pim/common/simple-view
+        parent: pim-user-edit-form-user-config-tab
+        position: 10
+        config:
+            template: pim/template/form/tab/section
+            templateParams:
+                sectionTitle: ''
+                dropZone: content
+
+    pim-user-edit-form-user-config-enabled:
+        module: pim/form/common/fields/boolean
+        parent: pim-user-edit-form-user-config-tab-content
+        position: 10
+        targetZone: content
+        config:
+            fieldName: userOptions.is_owner
+            label: bolgatty.user.properties.is_owner
+            required: true
+
+    pim-user-edit-form-user-config-ui-locales:
+        module: pim/user/fields/ui-locale
+        parent: pim-user-edit-form-user-config-tab-content
+        position: 10
+        targetZone: content
+        config:
+            fieldName: userOptions.bolgatty_user_locales
+            label: bolgatty.user.properties.ui_locale
+            required: true
+            isMultiple: true
+            allowClear: false

@@ -1,0 +1,6 @@
+extensions:
+    # bolgatty-send-for-approval-comment:
+    #     module: workflow/product/form/send-for-approval-comment
+
+    bolgatty-workflow-proposal-add-comment:
+        module: workflow/product/form/proposal-add-comment

@@ -1,0 +1,159 @@
+parameters:
+    bolgatty_workflow.presenter.text.class: Bolgatty\WorkFlowBundle\Presenter\TextPresenter
+    bolgatty_workflow.presenter.textarea.class: Bolgatty\WorkFlowBundle\Presenter\TextareaPresenter
+    bolgatty_workflow.presenter.metric.class: Bolgatty\WorkFlowBundle\Presenter\MetricPresenter
+    bolgatty_workflow.presenter.date.class: Bolgatty\WorkFlowBundle\Presenter\DatePresenter
+    bolgatty_workflow.presenter.prices.class: Bolgatty\WorkFlowBundle\Presenter\PricesPresenter
+    bolgatty_workflow.presenter.number.class: Bolgatty\WorkFlowBundle\Presenter\NumberPresenter
+    bolgatty_workflow.presenter.boolean.class: Bolgatty\WorkFlowBundle\Presenter\BooleanPresenter
+    bolgatty_workflow.presenter.default.class: Bolgatty\WorkFlowBundle\Presenter\DefaultPresenter
+    bolgatty_workflow.presenter.option.class: Bolgatty\WorkFlowBundle\Presenter\OptionPresenter
+    bolgatty_workflow.presenter.options.class: Bolgatty\WorkFlowBundle\Presenter\OptionsPresenter
+    bolgatty_workflow.presenter.file.class: Bolgatty\WorkFlowBundle\Presenter\FilePresenter
+    bolgatty_workflow.presenter.image.class: Bolgatty\WorkFlowBundle\Presenter\ImagePresenter
+    bolgatty_workflow.presenter.product_value.date.class: Bolgatty\WorkFlowBundle\Presenter\DatePresenter
+    bolgatty_workflow.presenter.product_value.boolean.class: Bolgatty\WorkFlowBundle\Presenter\BooleanPresenter
+    bolgatty_workflow.presenter.product_value.image.class: Bolgatty\WorkFlowBundle\Presenter\ImagePresenter
+    bolgatty_workflow.presenter.product_value.file.class: Bolgatty\WorkFlowBundle\Presenter\FilePresenter
+
+services:
+    bolgatty_workflow.presenter.default:
+        class: '%bolgatty_workflow.presenter.default.class%'
+        tags:
+            - { name: bolgatty_workflow.presenter, priority: -128 }
+
+    bolgatty_workflow.presenter.text:
+        class: '%bolgatty_workflow.presenter.text.class%'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.textarea:
+        class: '%bolgatty_workflow.presenter.textarea.class%'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.metric:
+        class: '%bolgatty_workflow.presenter.metric.class%'
+        arguments:
+            - '@pim_catalog.localization.presenter.metric'
+            - '@pim_enrich.resolver.locale'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.date:
+        class: '%bolgatty_workflow.presenter.date.class%'
+        arguments:
+            - '@pim_catalog.localization.presenter.date'
+            - '@pim_enrich.resolver.locale'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.prices:
+        class: '%bolgatty_workflow.presenter.prices.class%'
+        arguments:
+            - '@pim_catalog.localization.presenter.prices'
+            - '@pim_enrich.resolver.locale'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.number:
+        class: '%bolgatty_workflow.presenter.number.class%'
+        arguments:
+            - '@pim_catalog.localization.presenter.number'
+            - '@pim_enrich.resolver.locale'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.boolean:
+        class: '%bolgatty_workflow.presenter.boolean.class%'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.option:
+        class: '%bolgatty_workflow.presenter.option.class%'
+        arguments:
+            - '@pim_catalog.repository.cached_attribute_option'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.options:
+        class: '%bolgatty_workflow.presenter.options.class%'
+        arguments:
+            - '@pim_catalog.repository.cached_attribute_option'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.file:
+        class: '%bolgatty_workflow.presenter.file.class%'
+        arguments:
+            - '@router'
+            - '@akeneo_file_storage.repository.file_info'
+        tags:
+            - { name: bolgatty_workflow.presenter, priority: -64 }
+
+    bolgatty_workflow.presenter.image:
+        class: '%bolgatty_workflow.presenter.image.class%'
+        arguments:
+            - '@router'
+            - '@akeneo_file_storage.repository.file_info'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    bolgatty_workflow.presenter.product_value.date:
+        class: '%bolgatty_workflow.presenter.product_value.date.class%'
+        arguments:
+            - '@pim_catalog.localization.presenter.date'
+            - '@pim_enrich.resolver.locale'
+        tags:
+            - { name: bolgatty_workflow.product_value_presenter }
+
+    bolgatty_workflow.presenter.product_value.boolean:
+        class: '%bolgatty_workflow.presenter.product_value.boolean.class%'
+        tags:
+            - { name: bolgatty_workflow.product_value_presenter }
+
+    bolgatty_workflow.presenter.product_value.image:
+        class: '%bolgatty_workflow.presenter.product_value.image.class%'
+        arguments:
+            - '@router'
+            - '@akeneo_file_storage.repository.file_info'
+        tags:
+            - { name: bolgatty_workflow.product_value_presenter }
+
+    bolgatty_workflow.presenter.product_value.file:
+        class: '%bolgatty_workflow.presenter.product_value.file.class%'
+        arguments:
+            - '@router'
+            - '@akeneo_file_storage.repository.file_info'
+        tags:
+            - { name: bolgatty_workflow.product_value_presenter }
+
+    pimee_reference_data.workflow.presenter.reference_data:
+        class: 'Bolgatty\WorkFlowBundle\Presenter\ReferenceData\ReferenceDataPresenter'
+        arguments:
+            - '@pim_reference_data.repository_resolver'
+        tags:
+            - { name: bolgatty_workflow.presenter }
+
+    # pimee_reference_data.workflow.presenter.reference_data_collection:
+    #     class: 'Bolgatty\WorkFlowBundle\Presenter\ReferenceData\ReferenceDataCollectionPresenter'
+    #     arguments:
+    #         - '@pim_reference_data.repository_resolver'
+    #     tags:
+    #         - { name: bolgatty_workflow.presenter }
+
+    # bolgatty_workflow.presenter.product_value.reference_entity_collection:
+    #     class: 'Akeneo\Pim\Enrichment\ReferenceEntity\Component\Presenter\ReferenceEntityCollectionValuePresenter'
+    #     tags:
+    #         - { name: bolgatty_workflow.presenter }
+
+    # bolgatty_workflow.presenter.product_value.reference_entity:
+    #     class: 'Akeneo\Pim\Enrichment\ReferenceEntity\Component\Presenter\ReferenceEntityValuePresenter'
+    #     tags:
+    #         - { name: bolgatty_workflow.presenter }
+
+    # bolgatty_workflow.presenter.product_value.asset_collection:
+    #     class: 'Akeneo\Pim\Enrichment\AssetManager\Component\Presenter\AssetCollectionValuePresenter'
+    #     tags:
+    #         - { name: bolgatty_workflow.presenter }
+

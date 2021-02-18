@@ -1,0 +1,81 @@
+# extensions:
+#     pim-proposal-index:
+#         module: pim/common/simple-view
+#         config:
+#             template: pim/template/common/default-template
+#         forwarded-events:
+#             grid_load:start: grid_load:start
+
+#     pim-proposal-index-grid-container:
+#         module: pim/common/simple-view
+#         parent: pim-proposal-index
+#         targetZone: content
+#         config:
+#             template: pim/template/form/index/index
+
+#     pim-proposal-index-user-navigation:
+#         module: pim/menu/user-navigation
+#         parent: pim-proposal-index
+#         targetZone: user-menu
+#         config:
+#             userAccount: pim_menu.user.user_account
+#             logout: pim_menu.user.logout
+
+#     pim-proposal-index-grid-title:
+#         module: pim/common/grid-title
+#         parent: pim-proposal-index
+#         targetZone: title
+#         config:
+#             title: pimee_workflow.proposal.overview
+
+#     pim-proposal-index-grid-filters:
+#         module: pim/common/simple-view
+#         config:
+#           template: pimee/templates/proposals/grid/filters
+
+#     pim-proposal-index-grid-filters-column:
+#         module: oro/datafilter/filters-column
+#         parent: pim-proposal-index-grid-filters
+#         targetZone: manage-filters-button
+#         config:
+#           attributeFiltersRoute: pimee_workflow_product_draft_rest_manage_filters_attribute_choice
+
+#     pim-proposal-index-grid-filters-list:
+#         module: oro/datafilter/filters-selector
+#         parent: pim-proposal-index-grid-filters
+#         targetZone: filters
+
+#     pim-proposal-index-mass-actions:
+#         module: pim/grid/mass-actions
+#         parent: pim-proposal-index
+#         targetZone: bottom-panel
+#         config:
+#             label: pimee_workflow.proposal.selected
+
+#     pim-proposal-index-actions-panel:
+#         module: oro/datagrid/actions-panel
+#         parent: pim-proposal-index-mass-actions
+#         targetZone: actions-panel
+
+#     pim-proposal-index-pagination:
+#         module: oro/datagrid/pagination-input
+#         parent: pim-proposal-index-grid-container
+#         targetZone: toolbar
+#         config:
+#             gridName: proposal-grid
+
+#     pim-proposal-index-grid:
+#         module: pim/form/common/index/grid
+#         parent: pim-proposal-index-grid-container
+#         position: 1000
+#         config:
+#             alias: proposal-grid
+#             localeKey: dataLocale
+
+#     pim-proposal-index-breadcrumbs:
+#         module: pim/common/breadcrumbs
+#         parent: pim-proposal-index
+#         targetZone: breadcrumbs
+#         config:
+#             tab: pim-menu-activity
+#             item: pim-menu-activity-proposal

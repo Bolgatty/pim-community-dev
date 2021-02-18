@@ -1,0 +1,21 @@
+services:
+    bolgatty.remover.product_draft:
+        class: '%akeneo_storage_utils.remover.base.class%'
+        arguments:
+            - '@bolgatty.object_manager.product_draft'
+            - '@event_dispatcher'
+            - '%bolgatty.entity.product_draft.class%'
+
+    bolgatty.remover.product_model_draft:
+        class: '%akeneo_storage_utils.remover.base.class%'
+        arguments:
+            - '@bolgatty.object_manager.product_model_draft'
+            - '@event_dispatcher'
+            - '%bolgatty.model.product_model_draft.class%'
+
+    # pimee_workflow.remover.published_product:
+    #     class: '%akeneo_storage_utils.remover.base.class%'
+    #     arguments:
+    #         - '@pim_catalog.object_manager.product'
+    #         - '@event_dispatcher'
+    #         - '%pimee_workflow.entity.published_product.class%'

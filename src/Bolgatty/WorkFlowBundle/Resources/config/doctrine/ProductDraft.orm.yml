@@ -1,0 +1,54 @@
+Bolgatty\WorkFlowBundle\Entity\ProductDraft:
+    type: entity
+    table: bolgattry_product_draft
+    changeTrackingPolicy: DEFERRED_EXPLICIT
+    repositoryClass: Bolgatty\WorkFlowBundle\Doctrine\ORM\Repository\EntityWithValuesDraftRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        createdAt:
+            type: datetime
+            column: created_at
+            nullable: false
+        changes:
+            type: json_array
+            nullable: false
+        rawValues:
+            type: json
+            column: raw_values
+        status:
+            type: integer
+            nullable: false
+        source:
+            type: string
+            nullable: false
+            options:
+                default: ''
+        sourceLabel:
+            type: string
+            column: source_label
+            nullable: false
+            options:
+                default: ''
+        author:
+            type: string
+            nullable: false
+        authorLabel:
+            type: string
+            column: author_label
+            nullable: false
+            options:
+                default: ''
+    manyToOne:
+        entityWithValues:
+            targetEntity: Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: CASCADE
+    uniqueConstraints:
+        unique_idx:
+            columns: [ author, product_id ]

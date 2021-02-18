@@ -1,0 +1,80 @@
+<div class="AknFormContainer AknFormContainer--withPadding AknFormContainer-otherSettings">
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_metric_selection">
+                <%- _.__('Autogenrate SKU Start Sequence From') %>
+            </label>
+        </div>
+        <div class="meta" data-drop-zone="meta"></div>
+        <div class="AknFieldContainer-inputContainer">
+            <div class="field-input">
+                <div class="switch switch-small" data-on-label="Enabled" data-off-label="Disabled">
+                    <input id="pim_enrich_form_metric_selection" type="number" name="autogenerate-sku" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_product_parts">
+                <%- _.__('Retail Price Attribute:') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer ">
+            <% selectVal = typeof(settings.attrOptionAdminCol) === 'string' ? settings.attrOptionAdminCol : 0 %>
+            <select class="select2" id="attrOptionAdminCol" name="attrOptionAdminCol">
+                <% _.each({'1' : 'Option Code', '0' : 'Option Label'}, function (label, code) { %>
+                    <option value="<%- code %>" <%- selectVal == code ? 'selected' : '' %>><%- _.__(label) %></option>
+                <% }) %>
+            </select>            
+        </div>
+    </div>
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_product_parts">
+                <%- _.__('Zero Rated Attribute:') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer ">
+            <% selectVal = typeof(settings.attrOptionAdminCol) === 'string' ? settings.attrOptionAdminCol : 0 %>
+            <select class="select2" id="attrOptionAdminCol" name="attrOptionAdminCol">
+                <% _.each({'1' : 'Option Code', '0' : 'Option Label'}, function (label, code) { %>
+                    <option value="<%- code %>" <%- selectVal == code ? 'selected' : '' %>><%- _.__(label) %></option>
+                <% }) %>
+            </select>            
+        </div>
+    </div>
+
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_product_parts">
+                <%- _.__('GST Exempt Attribute:') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer ">
+            <% selectVal = typeof(settings.attrOptionAdminCol) === 'string' ? settings.attrOptionAdminCol : 0 %>
+            <select class="select2" id="attrOptionAdminCol" name="attrOptionAdminCol">
+                <% _.each({'1' : 'Option Code', '0' : 'Option Label'}, function (label, code) { %>
+                    <option value="<%- code %>" <%- selectVal == code ? 'selected' : '' %>><%- _.__(label) %></option>
+                <% }) %>
+            </select>            
+        </div>
+    </div>
+
+    <div class="AknFieldContainer">
+        <div class="AknFieldContainer-header">
+            <label class="AknFieldContainer-label control-label" for="pim_enrich_form_product_parts">
+                <%- _.__('COST price / Calculated Points Attribute:') %>
+            </label>
+        </div>
+        <div class="AknFieldContainer-inputContainer ">
+            <% selectVal = typeof(settings.attrOptionAdminCol) === 'string' ? settings.attrOptionAdminCol : 0 %>
+            <select class="select2" id="attrOptionAdminCol" name="attrOptionAdminCol">
+                <% _.each({'1' : 'Option Code', '0' : 'Option Label'}, function (label, code) { %>
+                    <option value="<%- code %>" <%- selectVal == code ? 'selected' : '' %>><%- _.__(label) %></option>
+                <% }) %>
+            </select>            
+        </div>
+    </div>
+    
+</div>

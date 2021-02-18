@@ -1,0 +1,15 @@
+# BolGatty Permissions
+bolgatty_product_or_product_model_send_for_approval:
+    type: action
+    label: bolgatty.acl_group.approval
+    group_name: bolgatty.acl_group.poc_permissions
+    
+bolgatty_product_or_product_model_proposals:
+    type: action
+    label: bolgatty.acl_group.proposals
+    group_name: bolgatty.acl_group.poc_permissions
+
+bolgatty_product_or_product_model_visible_locales:
+    type: action
+    label: bolgatty.acl_group.product_or_model_visible_locales_for_users
+    group_name: bolgatty.acl_group.poc_permissions

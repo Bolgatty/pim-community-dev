@@ -1,0 +1,61 @@
+parameters:
+    bolgatty.saver.product_delegating.class: 
+    bolgatty.saver.product_model_delegating.class: 
+
+services:
+    bolgatty.saver.working_copy_product:
+        alias: pim_catalog.saver.product
+
+    bolgatty.saver.working_copy_product_model:
+        alias: pim_catalog.saver.product_model
+
+    # product draft saver
+    bolgatty.saver.product_draft:
+        class: '%akeneo_storage_utils.saver.base.class%'
+        arguments:
+            - '@bolgatty.object_manager.product_draft'
+            - '@event_dispatcher'
+            - '%bolgatty.entity.product_draft.class%'
+
+    bolgatty.saver.product_model_draft:
+        class: '%akeneo_storage_utils.saver.base.class%'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@event_dispatcher'
+            - '%bolgatty.model.product_model_draft.class%'
+
+    # this product saver delegates to draft or working copy savers depending on user permissions
+    bolgatty.saver.product_delegating:
+        class: Bolgatty\WorkFlowBundle\Doctrine\Common\Saver\DelegatingProductSaver
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@event_dispatcher'
+            - '@security.authorization_checker'
+            - '@bolgatty.product.builder.draft'
+            - '@security.token_storage'
+            - '@bolgatty.repository.product_draft'
+            - '@bolgatty.remover.product_draft'
+            - '@pim_catalog.synchronizer.product_unique_data'
+            - '@bolgatty_catalog.security.merger.merge_data_on_product'
+            - '@pim_catalog.repository.product_without_permission'
+            - '@Bolgatty\WorkFlowBundle\Component\Factory\PimUserDraftSourceFactory'
+        calls:
+            - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]
+
+    bolgatty.saver.product_model_delegating:
+        class: Bolgatty\WorkFlowBundle\Doctrine\Common\Saver\DelegatingProductModelSaver
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@pim_catalog.saver.product_model'
+            - '@bolgatty.saver.product_model_draft'
+            - '@security.authorization_checker'
+            - '@security.token_storage'
+            - '@bolgatty.product_model.builder.draft'
+            - '@bolgatty.remover.product_model_draft'
+            - '@bolgatty_catalog.security.merger.merge_data_on_product_model'
+            - '@pim_catalog.repository.product_model'
+            - '@bolgatty.repository.product_model_draft'
+            - '@pim_catalog.saver.product_model'
+            - '@Bolgatty\WorkFlowBundle\Component\Factory\PimUserDraftSourceFactory'
+        calls:
+            - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]
