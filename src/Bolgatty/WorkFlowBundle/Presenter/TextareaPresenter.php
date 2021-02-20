@@ -5,8 +5,6 @@ use Akeneo\Pim\Structure\Component\AttributeTypes;
 
 /**
  * Present textarea data
- *
- * @author Gildas Quemener <gildas@akeneo.com>
  */
 class TextareaPresenter extends AbstractProductValuePresenter
 {

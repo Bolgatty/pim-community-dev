@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Akeneo PIM Enterprise Edition.
- *
- * (c) 2014 Akeneo SAS (http://www.akeneo.com)
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Bolgatty\WorkFlowBundle\Presenter;
 
 use Akeneo\Pim\Structure\Component\AttributeTypes;
@@ -18,7 +9,7 @@ use Akeneo\Tool\Component\Localization\Presenter\PresenterInterface as BasePrese
 /**
  * Present change on metric data
  *
- * @author Gildas Quemener <gildas@akeneo.com>
+ * @author Firoj Ahmad <firojahmad07@gmail.com>
  */
 class MetricPresenter extends AbstractProductValuePresenter implements TranslatorAwareInterface
 {

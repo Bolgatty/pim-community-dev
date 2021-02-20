@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * Product draft normalizer
  *
- * @author F Alpe <filips@akeneo.com>
+ * @author firoj ahmad <firojahmad07@gmail.com>
  */
 class ProductDraftNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
 {

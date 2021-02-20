@@ -6,8 +6,6 @@ use Akeneo\Tool\Component\StorageUtils\Repository\IdentifiableObjectRepositoryIn
 
 /**
  * Present changes on options datasetRenderer
- *
- * @author Gildas Quemener <gildas@akeneo.com>
  */
 class OptionsPresenter extends AbstractProductValuePresenter
 {

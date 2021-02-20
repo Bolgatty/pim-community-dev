@@ -5,8 +5,6 @@ use Akeneo\Pim\Structure\Component\AttributeTypes;
 
 /**
  * Present text data
- *
- * @author Julien Sanchez <julien@akeneo.com>
  */
 class TextPresenter extends AbstractProductValuePresenter
 {

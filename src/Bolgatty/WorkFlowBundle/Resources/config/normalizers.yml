@@ -68,5 +68,6 @@ services:
             - '@pim_catalog.repository.product_model'
         calls:
             - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]
+            # - ["setProductModelRepository", ['@pim_catalog.repository.product_model']]
         tags:
             - { name: pim_internal_api_serializer.normalizer, priority: 120 }

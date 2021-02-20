@@ -1,14 +1,4 @@
 <?php
-
-/*
- * This file is part of the Akeneo PIM Enterprise Edition.
- *
- * (c) 2015 Akeneo SAS (http://www.akeneo.com)
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Bolgatty\WorkFlowBundle\Presenter;
 
 use Akeneo\Pim\Structure\Component\AttributeTypes;
@@ -17,8 +7,6 @@ use Akeneo\Tool\Component\Localization\Presenter\PresenterInterface as BasePrese
 
 /**
  * Present changes on numbers
- *
- * @author Pierre Allard <pierre.allard@akeneo.com>
  */
 class NumberPresenter extends AbstractProductValuePresenter
 {

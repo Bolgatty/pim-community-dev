@@ -35,7 +35,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 /**
  * Product draft rest controller
  *
- * @author Filips Alpe <filips@akeneo.com>
+ * @author Firoj Ahmad <firojahmad07@gmail.com>
  */
 class ProductDraftController
 {

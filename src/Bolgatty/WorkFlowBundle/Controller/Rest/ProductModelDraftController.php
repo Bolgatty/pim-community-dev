@@ -9,8 +9,6 @@ use Akeneo\Pim\Enrichment\Component\Product\Model\EntityWithValuesInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Model\ProductModelInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Repository\ProductModelRepositoryInterface;
 use Akeneo\UserManagement\Bundle\Context\UserContext;
-// use Akeneo\Pim\Permission\Component\Attributes;
-use Akeneo\Pim\Permission\Component\Attributes as SecurityAttributes;
 use Akeneo\Pim\Structure\Component\Model\AttributeInterface;
 use Akeneo\Pim\Structure\Component\Repository\AttributeRepositoryInterface;
 use Bolgatty\WorkFlowBundle\Doctrine\ORM\Repository\EntityWithValuesDraftRepository;
@@ -30,7 +28,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 /**
  * Product model draft rest controller
  *
- * @author Philippe Mossière <philippe.mossiere@akeneo.com>
+ * @author Firoj Ahmad <firojahmad07@gmail.com>
  */
 class ProductModelDraftController
 {

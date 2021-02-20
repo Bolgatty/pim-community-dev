@@ -37,7 +37,7 @@ services:
             - '@bolgatty.remover.product_draft'
             - '@pim_catalog.synchronizer.product_unique_data'
             - '@bolgatty_catalog.security.merger.merge_data_on_product'
-            - '@pim_catalog.repository.product_without_permission'
+            - '@pim_catalog.repository.product_model'
             - '@Bolgatty\WorkFlowBundle\Component\Factory\PimUserDraftSourceFactory'
         calls:
             - ["setPermissionChecker", ['@bolgatty_workflow.permission_checker']]

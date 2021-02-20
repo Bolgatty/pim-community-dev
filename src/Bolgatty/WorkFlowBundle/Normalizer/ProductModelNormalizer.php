@@ -43,6 +43,8 @@ class ProductModelNormalizer implements NormalizerInterface, SerializerAwareInte
     /** @var PermissionChecker */
     protected $permissionChecker;
 
+    public $parentProductModelRepo;
+
     public function __construct(
         NormalizerInterface $normalizer,
         EntityWithValuesDraftRepositoryInterface $draftRepository,
@@ -62,6 +64,10 @@ class ProductModelNormalizer implements NormalizerInterface, SerializerAwareInte
     {
         $this->permissionChecker = $permissionChecker;
     }
+    // public function setProductModelRepository($parentProductModelRepo)
+    // {
+    //     $this->parentProductModelRepo = $parentProductModelRepo;
+    // }
     /**
      * {@inheritdoc}
      */
@@ -85,8 +91,10 @@ class ProductModelNormalizer implements NormalizerInterface, SerializerAwareInte
             }
         }
 
+        // $parentProductModel = $this->parentProductModelRepo->findOneByIdentifier($productModel->getCode());
         $normalizedProductModel = $this->normalizer->normalize($productModel, 'internal_api', $context);
-
+        // dump("parent model :", $normalizedProductModel);
+        
         $meta = [
             'is_owner' => $isOwner,
             'working_copy' => $normalizedWorkingCopy,
@@ -98,6 +106,7 @@ class ProductModelNormalizer implements NormalizerInterface, SerializerAwareInte
 
         $normalizedProductModel['meta'] = array_merge($normalizedProductModel['meta'], $meta);
 
+        // dump("reached here", $normalizedProductModel);die;
         return $normalizedProductModel;
     }
 

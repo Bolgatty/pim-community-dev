@@ -94,10 +94,6 @@ define(
                     return false;
                 }
                 
-                // if (!_.isUndefined(this.getFormData().code) && !_.isEmpty(workingCopyValue)) {
-                //     return true;
-                // }
-                
                 var currentValue = AttributeManager.getValue(
                     this.getFormData().values[attribute.code],
                     attribute,

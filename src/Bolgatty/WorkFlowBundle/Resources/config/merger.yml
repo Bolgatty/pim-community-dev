@@ -1,34 +1,12 @@
 services:
-    # pimee_catalog.security.merger.not_granted_category:
-    #     class: 'Akeneo\Pim\Permission\Component\Merger\NotGrantedCategoryMerger'
-    #     arguments:
-    #         - '@security.authorization_checker'
-    #         - '@pim_catalog.updater.category_field_without_permission'
-
-    # pimee_catalog.security.merger.not_granted_associated_product:
-    #     class: 'Akeneo\Pim\Permission\Component\Merger\NotGrantedAssociatedProductMerger'
-    #     arguments:
-    #         - '@security.authorization_checker'
-    #         - '@pim_catalog.updater.association_field_without_permission'
-    #         - '@pimee_security.query.product_category_access'
-    #         - '@pimee_security.query.product_model_category_access'
-    #         - '@security.token_storage'
-
-    # pimee_catalog.security.merger.not_granted_values:
-    #     class: 'Akeneo\Pim\Permission\Component\Merger\NotGrantedValuesMerger'
-    #     arguments:
-    #         - '@pimee_security.query.get_viewable_attribute_codes_for_user'
-    #         - '@pimee_security.query.get_all_viewable_locales_for_user'
-    #         - '@security.token_storage'
-
     bolgatty_catalog.security.merger.merge_data_on_product:
         class: 'Bolgatty\WorkFlowBundle\Component\Merger\MergeDataOnProduct'
         arguments:
             - '@pim_catalog.repository.attribute'
             - '@pim_catalog.entity_with_family_variant.add_parent_to_product'
-            - '@pim_catalog.repository.product_model_without_permission'
+            - '@pim_catalog.repository.product_model'
 
     bolgatty_catalog.security.merger.merge_data_on_product_model:
         class: 'Bolgatty\WorkFlowBundle\Component\Merger\MergeDataOnProductModel'
         arguments:
-            - '@pim_catalog.repository.product_model_without_permission'
+            - '@pim_catalog.repository.product_model'

@@ -5,8 +5,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Provide translation capability default implementation
- *
- * @author Gildas Quemener <gildas@akeneo.com>
  */
 trait TranslatorAware
 {

@@ -1,6 +1,6 @@
-{# {% if record.getValue('status') == constant('Bolgatty\\WorkFlowBundle\\Entity\\EntityWithValuesDraftInterface::IN_PROGRESS') %}
+{% if record.getValue('status') == constant('Bolgatty\\WorkFlowBundle\\Entity\\EntityWithValuesDraftInterface::IN_PROGRESS') %}
     <em>{{ 'bolgatty_workflow.proposal.draft_in_progress'|trans({'%author%': record.getValue('author')}) }}</em>
-{% else %} #}
+{% else %}
     {% for code, changes in value %}       
         {% set canView = true %}
         {% for change in changes %}
@@ -88,4 +88,4 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
-{# {% endif %} #}
+{% endif %}

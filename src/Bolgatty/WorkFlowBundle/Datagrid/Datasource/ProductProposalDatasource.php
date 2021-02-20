@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * Product proposal datasource, executes elasticsearch query
  *
- * @author Olivier Soulet <olivier.soulet@akeneo.com>
+ * @author Firoj Ahmad <firojahmad07@gmail.com>
  */
 class ProductProposalDatasource implements DatasourceInterface, ParameterizableInterface
 {

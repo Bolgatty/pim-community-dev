@@ -1,9 +1,7 @@
 parameters:
     bolgatty.repository.entity_with_values_draft.class: Bolgatty\WorkFlowBundle\Doctrine\ORM\Repository\EntityWithValuesDraftRepository
     bolgatty.repository.delegating_product.class: Bolgatty\WorkFlowBundle\Doctrine\ORM\Repository\DelegatingProductRepository
-    bolgatty.repository.product.class: Bolgatty\WorkFlowBundle\Repository\EntityWithValue\ProductRepository
-    bolgatty.repository.product_model.class: Bolgatty\WorkFlowBundle\Repository\EntityWithValue\ProductModelRepository
-
+   
 services:
     bolgatty.object_manager.product_draft:
         alias: doctrine.orm.entity_manager
@@ -25,53 +23,20 @@ services:
         tags:
             - { name: 'pim_repository' }
 
-    pimee_workflow.repository.delegating_product:
+    bolgatty.repository.delegating_product:
         class: '%bolgatty.repository.delegating_product.class%'
         arguments:
             - '@security.token_storage'
             - '@security.authorization_checker'
             - '@pim_catalog.repository.product'
             - '@bolgatty.repository.product_draft'
-            - '@pimee_workflow.applier.draft'
+            - '@bolgatty_workflow.applier.draft'
 
-    pimee_workflow.repository.delegating_product_model:
+    bolgatty.repository.delegating_product_model:
         class: '%bolgatty.repository.delegating_product.class%'
         arguments:
             - '@security.token_storage'
             - '@security.authorization_checker'
             - '@pim_catalog.repository.product_model'
             - '@bolgatty.repository.product_model_draft'
-            - '@pimee_workflow.applier.draft'
-
-    # pimee_workflow.repository.proposal_tracking:
-    #     class: Akeneo\Pim\WorkOrganization\Workflow\Bundle\Doctrine\ORM\Repository\ProposalTrackingRepository
-    #     arguments:
-    #         - '@database_connection'
-    pimee_security.repository.product:
-        class: '%bolgatty.repository.product.class%'
-        decorates: pim_catalog.repository.product
-        decoration_inner_name: pim_catalog.repository.product_without_permission
-        arguments:
-            - '@pim_catalog.object_manager.product'
-            - '@pim_catalog.repository.product_without_permission'
-            - '@bolgatty.security.factory.filtered_product'
-            - '%pim_catalog.entity.product.class%'
-
-    bolgatty.security.repository.product_model:
-        class: '%bolgatty.repository.product_model.class%'
-        decorates: pim_catalog.repository.product_model
-        decoration_inner_name: pim_catalog.repository.product_model_without_permission
-        arguments:
-            - '@pim_catalog.object_manager.product'
-            - '@pim_catalog.repository.product_model_without_permission'
-            - '@bolgatty.security.factory.filtered_product_model'
-            - '@bolgatty.security.factory.filtered_product'
-            - '%pim_catalog.entity.product_model.class%'
-            
-    # bolgatty.security.updater.entity_with_granted_values_property_setter:
-    #     class: 'Bolgatty\WorkFlowBundle\Component\Updater\EntityWithGrantedValuesPropertySetter'
-    #     decorates: pim_catalog.updater.property_setter
-    #     decoration_inner_name: pim_catalog.updater.entity_with_values_property_setter_without_permission
-    #     arguments:
-    #         - '@pim_catalog.updater.entity_with_values_property_setter_without_permission'
-    #         - '@pim_catalog.repository.cached_attribute'
+            - '@bolgatty_workflow.applier.draft'

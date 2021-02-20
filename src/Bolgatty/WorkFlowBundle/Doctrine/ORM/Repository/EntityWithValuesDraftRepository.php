@@ -14,7 +14,7 @@ use Oro\Bundle\PimDataGridBundle\Doctrine\ORM\Repository\MassActionRepositoryInt
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @author Olivier Soulet <olivier.soulet@akeneo.com>
+ * @author firojahmad <firojahmad07@gmail.com>
  */
 class EntityWithValuesDraftRepository extends EntityRepository implements EntityWithValuesDraftRepositoryInterface,
          CursorableRepositoryInterface, SearchableRepositoryInterface, MassActionRepositoryInterface
