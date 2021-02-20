@@ -1,0 +1,10 @@
+parameters:
+    bolgatty_freeipa_user.provider: Bolgatty\FreeipaIntegration\Security\UserProvider
+
+services:
+    pim_user.provider.user:
+        class: '%bolgatty_freeipa_user.provider%'
+        arguments:
+            - '@pim_user.repository.user'
+        calls:
+            - ['setRequestInstance', ['@request_stack']]

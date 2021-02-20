@@ -56,6 +56,10 @@ return [
     Akeneo\Tool\Bundle\VersioningBundle\AkeneoVersioningBundle::class => ['all' => true],
     Akeneo\Connectivity\Connection\Infrastructure\Symfony\AkeneoConnectivityConnectionBundle::class => ['all' => true],
 
+    /**Bolgatty bundles */
+    Bolgatty\WorkFlowBundle\WorkFlowBundle::class => ['all' => true],
+    Bolgatty\FreeipaIntegration\FreeipaIntegrationBundle::class => ['all' => true],
+
     // Dev related bundles
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true, 'behat' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true, 'behat' => true],

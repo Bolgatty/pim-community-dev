@@ -115,7 +115,9 @@
         "symfony/intl": "4.4.7",
         "symfony/finder": "4.4.7",
         "symfony/templating": "4.4.7",
-        "symfony/proxy-manager-bridge": "4.4.7"
+        "symfony/proxy-manager-bridge": "4.4.7",
+        "phpspec/php-diff": "^1.1",
+        "gnumoksha/php-freeipa": "^0.2.0"
     },
     "require-dev": {
         "akeneo/php-coupling-detector": "0.3.*",

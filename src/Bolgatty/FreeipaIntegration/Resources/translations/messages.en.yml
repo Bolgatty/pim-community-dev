@@ -1,0 +1,4 @@
+bolgatty:
+    user:
+        properties:
+            freeip: Do you want valide user with FreeIPA ?

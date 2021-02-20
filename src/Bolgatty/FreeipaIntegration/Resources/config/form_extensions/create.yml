@@ -1,0 +1,10 @@
+# extensions:
+#     pim-user-create-modal-free-ipa:
+#         module: freeipaintegration/fields/boolean
+#         parent: pim-user-create-modal
+#         position: 12
+#         targetZone: fields
+#         config:
+#             fieldName: freeip
+#             label: bolgatty.user.properties.freeip
+#             required: true

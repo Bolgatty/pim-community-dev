@@ -1,0 +1,9 @@
+parameters:
+    pim_user.controller.user_rest.class: Bolgatty\FreeipaIntegration\Controller\Rest\UserController
+   
+services:
+    bolgatty.ldap.connect:
+        public: true
+        class: Bolgatty\FreeipaIntegration\Controller\BaseController
+        arguments:
+            - "@doctrine.orm.entity_manager"

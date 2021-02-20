@@ -1,0 +1,7 @@
+bolgatty_workflow:
+    resource: "@WorkFlowBundle/Resources/config/routing.yml"
+    prefix: /
+
+bolgatty_freeipa_integration:
+    resource: '@FreeipaIntegrationBundle/Resources/config/routing.yml'
+    prefix: /

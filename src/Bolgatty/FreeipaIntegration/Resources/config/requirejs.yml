@@ -1,0 +1,4 @@
+config:
+    paths:
+        freeipaintegration/fields/boolean: freeipaintegration/js/fields/boolean
+    

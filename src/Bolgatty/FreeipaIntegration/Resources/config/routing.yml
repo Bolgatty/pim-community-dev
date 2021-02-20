@@ -1,0 +1,3 @@
+index:
+    path: /ldap/connect
+    defaults: { _controller: bolgatty.ldap.connect::connectWithLdap }
